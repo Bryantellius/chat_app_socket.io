@@ -2,6 +2,15 @@ console.log("Hello World!");
 
 const socket = io();
 
+// client-side
+socket.on("connect", () => {
+  console.log(socket.id);
+});
+
+socket.on("disconnect", () => {
+  console.log(socket.id);
+});
+
 socket.on("message", addMessage);
 
 document.querySelector("#send").addEventListener("click", (e) => {
@@ -36,7 +45,8 @@ function sendMessage(message) {
   fetch("http://localhost:3001/messages", {
     mode: "cors",
     method: "POST",
-    body: message,
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(message),
   })
     .then((res) => res.json())
     .then((res) => console.log(res))

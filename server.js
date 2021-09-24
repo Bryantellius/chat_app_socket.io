@@ -1,6 +1,8 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
+const { createServer } = require("http");
+const { Server } = require("socket.io");
 
 const pass = "FcLpfive5";
 
@@ -19,17 +21,17 @@ const Message = mongoose.model("Message", { name: String, message: String });
 const port = 3001;
 const app = express();
 
-const http = require("http").Server(app);
-const io = require("socket.io")(http);
-
-io.on("connection", () => {
-  console.log("User connected...");
-});
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
 app.use(express.static(path.join(__dirname, "public")));
+
+const server = createServer(app);
+const io = new Server(server);
+
+io.on("connection", (socket) => {
+  console.log("User connected...", socket.id);
+});
+
 
 app.get("/messages", (req, res, next) => {
   try {
@@ -42,17 +44,9 @@ app.get("/messages", (req, res, next) => {
   }
 });
 
-app.get("/socket.io", (req, res, next) => {
-  try {
-    res.status(200).sendFile(path.join(__dirname, "public/socket.io.js"))
-  } catch (error) {
-    next(error)
-  }
-})
-
 app.post("/messages", (req, res, next) => {
   try {
-    console.log(req.body)
+    console.log(req.body);
     let newMessage = new Message(req.body);
     newMessage.save((err) => {
       if (err) next(err);
@@ -73,7 +67,8 @@ app.use("*", (req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
+  console.error(err);
   res.status(500).json({ err, custom: "An error occurred on the server :(" });
 });
 
-app.listen(port, () => console.log(`Server listening on port: ${port}...`));
+server.listen(port, () => console.log(`Server listening on port: ${port}...`));
