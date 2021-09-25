@@ -1,13 +1,17 @@
 const express = require("express");
+const config = require("./config");
 const path = require("path");
 const mongoose = require("mongoose");
 const { createServer } = require("http");
 const { Server } = require("socket.io");
 
-const pass = "FcLpfive5";
+const user = config.db.user;
+const pass = config.db.pass;
 
 const dbUrl =
-  "mongodb+srv://root:" +
+  "mongodb+srv://" +
+  user +
+  ":" +
   pass +
   "@cluster0.mdypm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
@@ -31,7 +35,6 @@ const io = new Server(server);
 io.on("connection", (socket) => {
   console.log("User connected...", socket.id);
 });
-
 
 app.get("/messages", (req, res, next) => {
   try {
