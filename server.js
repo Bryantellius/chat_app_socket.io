@@ -68,6 +68,10 @@ io.on("connection", (socket) => {
       time,
     });
   });
+
+  socket.on("newMessage", (message) => {
+    socket.broadcast.emit("newMessage", message);
+  });
 });
 
 // app.get("/messages", (req, res, next) => {

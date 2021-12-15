@@ -1,0 +1,51 @@
+#root {
+  height: 100vh;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1004%26quot%3b)' fill='none'%3e%3cpath d='M -514.5209875476146%2c498 C -418.52%2c441.8 -226.52%2c239.6 -34.520987547614546%2c217 C 157.48%2c194.4 253.48%2c405.8 445.47901245238546%2c385 C 637.48%2c364.2 733.48%2c91.2 925.4790124523854%2c113 C 1117.48%2c134.8 1302.57%2c501.2 1405.4790124523854%2c494 C 1508.38%2c486.8 1433.1%2c160.4 1440%2c77' stroke='rgba(194%2c 51%2c 51%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M -366.36460011165764%2c78 C -270.36%2c132 -78.36%2c329.2 113.63539988834233%2c348 C 305.64%2c366.8 401.64%2c157 593.6353998883424%2c172 C 785.64%2c187 881.64%2c441.2 1073.6353998883424%2c423 C 1265.64%2c404.8 1480.36%2c89.4 1553.6353998883424%2c81 C 1626.91%2c72.6 1462.73%2c321 1440%2c381' stroke='rgba(194%2c 51%2c 51%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M -104.85898900412883%2c151 C -8.86%2c197.8 183.14%2c361 375.14101099587117%2c385 C 567.14%2c409 663.14%2c269.4 855.1410109958712%2c271 C 1047.14%2c272.6 1143.14%2c398.4 1335.141010995871%2c393 C 1527.14%2c387.6 1794.17%2c237.8 1815.141010995871%2c244 C 1836.11%2c250.2 1515.03%2c388 1440%2c424' stroke='rgba(194%2c 51%2c 51%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3cpath d='M -311.6454420613113%2c333 C -215.65%2c286.2 -23.65%2c82.4 168.3545579386887%2c99 C 360.35%2c115.6 456.35%2c384.2 648.3545579386887%2c416 C 840.35%2c447.8 936.35%2c281.6 1128.3545579386887%2c258 C 1320.35%2c234.4 1546.03%2c322.2 1608.3545579386887%2c298 C 1670.68%2c273.8 1473.67%2c169.2 1440%2c137' stroke='rgba(194%2c 51%2c 51%2c 0.58)' stroke-width='2'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1004'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#results {
+  max-width: 600px;
+  width: 100%;
+}
+
+.fit-content {
+    width: fit-content;
+}
+
+.max-50 {
+  max-height: 50vh;
+}
+
+.height-50 {
+  height: 50vh;
+}
+
+.overflow-scroll {
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar-track {
+  width: 2px;
+}
+
+/* Width */
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
