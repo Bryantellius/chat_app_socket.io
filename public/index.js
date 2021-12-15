@@ -2,53 +2,41 @@ console.log("Hello World!");
 
 const socket = io();
 
+let connectionBubble = document.querySelector("#connectionBubble");
+
 // client-side
 socket.on("connect", () => {
   console.log(socket.id);
+  connectionBubble.textContent = "Connected";
+  connectionBubble.classList.remove("is-danger");
+  connectionBubble.classList.add("is-success");
 });
 
 socket.on("disconnect", () => {
   console.log(socket.id);
+  connectionBubble.textContent = "Not Connected";
+  connectionBubble.classList.add("is-danger");
+  connectionBubble.classList.remove("is-success");
 });
 
-socket.on("message", addMessage);
-
-document.querySelector("#send").addEventListener("click", (e) => {
-  let name = document.querySelector("#name");
-  let message = document.querySelector("#message");
-  sendMessage({
-    name: name.value,
-    message: message.value,
-  });
-  name.value = "";
-  message.value = "";
+socket.on("time-increment", (time) => {
+  updateTime(time);
 });
 
-getMessages();
+socket.on("reset", (time) => {
+  document.querySelector("#results > tbody").innerHTML = "";
+  updateTime(time);
+});
 
-function addMessage(message) {
-  document.querySelector(
-    "#messages"
-  ).innerHTML += `<h4>${message.name}</h4><p>${message.message}</p>`;
+socket.on("result", addResult);
+
+function updateTime(time) {
+  document.querySelector("#time").textContent = time;
 }
 
-function getMessages() {
-  fetch("http://localhost:3001/messages")
-    .then((res) => res.json())
-    .then((data) => {
-      data.forEach(addMessage);
-    });
-}
-
-function sendMessage(message) {
-  console.log(message);
-  fetch("http://localhost:3001/messages", {
-    mode: "cors",
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify(message),
-  })
-    .then((res) => res.json())
-    .then((res) => console.log(res))
-    .catch((err) => console.error(err));
+function addResult(result) {
+  let tbody = document.querySelector("#results > tbody");
+  let tr = document.createElement("tr");
+  tr.innerHTML = `<td>${result.pos}</td><td>${result.athlete}</td><td>${result.school}</td><td>${result.year}</td><td>${result.time}</td>`;
+  tbody.appendChild(tr);
 }

@@ -4,35 +4,33 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chat App</title>
+    <title>Live Results</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
     <script src="socket.io.min.js" defer></script>
     <script src="index.js" defer></script>
   </head>
   <body>
     <div class="container">
-      <br />
-      <div class="jumbotron">
-        <h1 class="display-4">Send Message</h1>
-        <br />
-        <input
-          id="name"
-          class="form-control"
-          placeholder="Who are you?"
-          value=""
-          required
-        />
-        <br />
-        <textarea
-          id="message"
-          class="form-control"
-          placeholder="What would you like to say?"
-          required
-          value=""
-        ></textarea>
-        <br />
-        <button id="send" class="btn btn-success">Send</button>
+      <div class="content">
+        <span id="connectionBubble" class="tag is-danger">Not Connected</span>
+        <h1 class="title has-text-centered">Live Results</h1>
+        <h2 class="subtitle has-text-centered" id="time">00:00</h2>
       </div>
-      <div id="messages"></div>
+      <table id="results" class="table mx-auto w-100">
+        <thead>
+          <tr>
+            <th>Pos</th>
+            <th>Athlete</th>
+            <th>Team</th>
+            <th>Year</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
     </div>
   </body>
 </html>
