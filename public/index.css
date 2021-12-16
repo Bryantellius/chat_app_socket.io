@@ -9,7 +9,7 @@
   display: none;
 }
 
-#results {
+.max-w-600 {
   max-width: 600px;
   width: 100%;
 }

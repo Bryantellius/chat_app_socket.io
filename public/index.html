@@ -27,20 +27,20 @@
                 <h1 class="title has-text-centered">Live Results</h1>
                 <h2 class="subtitle has-text-centered" id="time">00:00</h2>
               </div>
-              <table
-                id="results"
-                class="table card mx-auto w-100 overflow-scroll max-50"
-              >
-                <thead>
-                  <tr>
-                    <th>
-                      <button class="toggleBtn button is-dark">Entries</button>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody></tbody>
-                <tbody id="entries" class="d-none"></tbody>
-              </table>
+              <div class="mx-auto max-50 card max-w-600">
+                <button class="toggleBtn button is-dark">View Entries</button>
+                <table
+                  id="results"
+                  class="table is-fullwidth is-hoverable overflow-scroll"
+                >
+                  <tbody>
+                    <tr id="placeholder">
+                      <td>Race in progress</td>
+                    </tr>
+                  </tbody>
+                  <tbody id="entries" class="d-none"></tbody>
+                </table>
+              </div>
             </article>
           </div>
         </div>

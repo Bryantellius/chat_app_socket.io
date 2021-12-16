@@ -64,7 +64,7 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("result", {
       pos: tempResults.length,
       athlete: athlete?.name || "Unknown",
-      school: athlete?.schoolAbr || "NA",
+      schoolAbr: athlete?.schoolAbr || "NA",
       year: athlete?.year || "NA",
       time,
     });

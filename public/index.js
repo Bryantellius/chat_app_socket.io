@@ -10,11 +10,18 @@ let entries = document.querySelector("#entries");
 let resultsTbody = document.querySelector("#results > tbody");
 let toggleBtn = document.querySelector(".toggleBtn");
 
+let showingEntries = false;
+
 toggleBtn.addEventListener("click", (e) => {
-  e.target.textContent =
-    e.target.textContent == "Entries" ? "Results" : "Entries";
-  entries.classList.toggle("d-none");
-  resultsTbody.classList.toggle("d-none");
+  showingEntries = !showingEntries;
+  e.target.textContent = showingEntries ? "View Results" : "View Entries";
+  if (showingEntries) {
+    entries.classList.remove("d-none");
+    resultsTbody.classList.add("d-none");
+  } else {
+    entries.classList.add("d-none");
+    resultsTbody.classList.remove("d-none");
+  }
 });
 
 let tempCurrentRace = {};
@@ -112,7 +119,8 @@ socket.on("time-increment", (time) => {
 });
 
 socket.on("reset", (time) => {
-  document.querySelector("#results > tbody").innerHTML = "";
+  document.querySelector("#results > tbody").innerHTML =
+    "<tr id='placeholder'><td>Race in progress</td></tr>";
   updateTime(time);
 });
 
@@ -124,8 +132,12 @@ function updateTime(time) {
 
 function addResult(result) {
   let tbody = document.querySelector("#results > tbody");
+  if (document.querySelector("#results > tbody > tr#placeholder"))
+    tbody.removeChild(
+      document.querySelector("#results > tbody > tr#placeholder")
+    );
   let tr = document.createElement("tr");
-  tr.innerHTML = `<td>${result.pos}</td><td>${result.athlete}</td><td>${result.school}</td><td>${result.year}</td><td>${result.time}</td>`;
+  tr.innerHTML = `<td>${result.pos}</td><td>${result.athlete}</td><td>${result.schoolAbr}</td><td>${result.year}</td><td>${result.time}</td>`;
   tbody.appendChild(tr);
 }
 
@@ -135,7 +147,7 @@ function addEntries(entries) {
   if (entries) {
     for (let val of entries) {
       let tr = document.createElement("tr");
-      tr.innerHTML = `<td>${val.name}</td><td>${val.school}</td><td>${val.year}</td>`;
+      tr.innerHTML = `<td>${val.name}</td><td>${val.schoolAbr}</td><td>${val.year}</td>`;
       tbody.appendChild(tr);
     }
   }
