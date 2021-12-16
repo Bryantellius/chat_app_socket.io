@@ -5,13 +5,17 @@
   background-repeat: no-repeat;
 }
 
+.d-none {
+  display: none;
+}
+
 #results {
   max-width: 600px;
   width: 100%;
 }
 
 .fit-content {
-    width: fit-content;
+  width: fit-content;
 }
 
 .max-50 {

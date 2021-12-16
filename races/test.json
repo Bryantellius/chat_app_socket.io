@@ -1,40 +1,87 @@
 {
   "title": "Test Race XC",
-  "entries": [
+  "races": [
     {
-      "athleteId": 1,
-      "name": "Ben Bryant",
-      "school": "Opelika",
-      "schoolAbr": "Ope",
-      "year": 11
+      "id": 1,
+      "title": "Varsity Boys 5k",
+      "entries": [
+        {
+          "athleteId": 1,
+          "name": "Ben Bryant",
+          "school": "Opelika",
+          "schoolAbr": "Ope",
+          "year": 11
+        },
+        {
+          "athleteId": 2,
+          "name": "Paul Richardson",
+          "school": "Whitesburg Christian Academy",
+          "schoolAbr": "WhCh",
+          "year": 12
+        },
+        {
+          "athleteId": 3,
+          "name": "Will Nichols",
+          "school": "John Carroll High School",
+          "schoolAbr": "JC",
+          "year": 11
+        },
+        {
+          "athleteId": 4,
+          "name": "Brad Cheek",
+          "school": "Independence High School",
+          "schoolAbr": "Idp",
+          "year": 11
+        },
+        {
+          "athleteId": 5,
+          "name": "Owen Bailey",
+          "school": "Woodstock High School",
+          "schoolAbr": "Wood",
+          "year": 11
+        }
+      ]
     },
     {
-      "athleteId": 2,
-      "name": "Paul Richardson",
-      "school": "Whitesburg Christian Academy",
-      "schoolAbr": "WhCh",
-      "year": 12
-    },
-    {
-      "athleteId": 3,
-      "name": "Will Nichols",
-      "school": "John Carroll High School",
-      "schoolAbr": "JC",
-      "year": 11
-    },
-    {
-      "athleteId": 4,
-      "name": "Brad Cheek",
-      "school": "Independence High School",
-      "schoolAbr": "Idp",
-      "year": 11
-    },
-    {
-      "athleteId": 5,
-      "name": "Owen Bailey",
-      "school": "Woodstock High School",
-      "schoolAbr": "Wood",
-      "year": 11
+      "id": 2,
+      "title": "Varsity Girls 5k",
+      "entries": [
+        {
+          "athleteId": 1,
+          "name": "Emma Garner",
+          "school": "Opelika",
+          "schoolAbr": "Ope",
+          "year": 12
+        },
+        {
+          "athleteId": 2,
+          "name": "Sydnee Richardson",
+          "school": "Whitesburg Christian Academy",
+          "schoolAbr": "WhCh",
+          "year": 12
+        },
+        {
+          "athleteId": 3,
+          "name": "Lauren Granier",
+          "school": "John Carroll High School",
+          "schoolAbr": "JC",
+          "year": 11
+        },
+        {
+          "athleteId": 4,
+          "name": "Bethany Cheek",
+          "school": "Independence High School",
+          "schoolAbr": "Idp",
+          "year": 11
+        },
+        {
+          "athleteId": 5,
+          "name": "Jenna Bailey",
+          "school": "Woodstock High School",
+          "schoolAbr": "Wood",
+          "year": 10
+        }
+      ]
     }
   ]
 }

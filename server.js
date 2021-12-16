@@ -9,6 +9,7 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const testRace = require("./races/test.json");
 const dayjs = require("dayjs");
+const { join } = require("path");
 
 // const dbUrl = config.db.url;
 
@@ -19,6 +20,7 @@ const dayjs = require("dayjs");
 
 // const Message = mongoose.model("Message", { name: String, message: String });
 
+let tempCurrentRace = {};
 let tempResults = [];
 const port = config.port;
 const app = express();
@@ -53,20 +55,24 @@ io.on("connection", (socket) => {
   });
 
   socket.on("result", ({ athlete, time }) => {
-    let athleteFound = testRace.entries.find((val) => val.athleteId == athlete);
-    if (!tempResults.includes(athleteFound)) {
+    if (!tempResults.includes(athlete)) {
       tempResults.push({
-        ...athleteFound,
+        ...athlete,
         time,
       });
     }
     socket.broadcast.emit("result", {
       pos: tempResults.length,
-      athlete: athleteFound?.name || "Unknown",
-      school: athleteFound?.schoolAbr || "NA",
-      year: athleteFound?.year || "NA",
+      athlete: athlete?.name || "Unknown",
+      school: athlete?.schoolAbr || "NA",
+      year: athlete?.year || "NA",
       time,
     });
+  });
+
+  socket.on("race-selection", (currentRace) => {
+    tempCurrentRace = currentRace;
+    socket.broadcast.emit("race-selection", currentRace);
   });
 
   socket.on("newMessage", (message) => {
@@ -74,30 +80,21 @@ io.on("connection", (socket) => {
   });
 });
 
-// app.get("/messages", (req, res, next) => {
-//   try {
-//     Message.find({}, (err, data) => {
-//       if (err) next(err);
-//       res.status(200).json(data);
-//     });
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+app.get("/api/v1/load-meet", (req, res, next) => {
+  try {
+    res.sendFile(join(__dirname, "races/test.json"));
+  } catch (error) {
+    next(error);
+  }
+});
 
-// app.post("/messages", (req, res, next) => {
-//   try {
-//     console.log(req.body);
-//     let newMessage = new Message(req.body);
-//     newMessage.save((err) => {
-//       if (err) next(err);
-//       io.emit("message", req.body);
-//       res.status(200).json({ message: "Successfully sent message!" });
-//     });
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+app.get("/api/v1/load-race", (req, res, next) => {
+  try {
+    res.json(tempCurrentRace);
+  } catch (error) {
+    next(error);
+  }
+});
 
 app.use("*", (req, res, next) => {
   try {

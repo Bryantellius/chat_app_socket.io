@@ -6,6 +6,31 @@ let connectionBubble = document.querySelector("#connectionBubble");
 let messageForm = document.querySelector("#messageForm");
 let messages = document.querySelector("#messages");
 let newMessage = document.querySelector("#newMessage");
+let entries = document.querySelector("#entries");
+let resultsTbody = document.querySelector("#results > tbody");
+let toggleBtn = document.querySelector(".toggleBtn");
+
+toggleBtn.addEventListener("click", (e) => {
+  e.target.textContent =
+    e.target.textContent == "Entries" ? "Results" : "Entries";
+  entries.classList.toggle("d-none");
+  resultsTbody.classList.toggle("d-none");
+});
+
+let tempCurrentRace = {};
+
+fetch("http://localhost:3001/api/v1/load-race")
+  .then((res) => res.json())
+  .then((data) => {
+    tempCurrentRace = data;
+    document.querySelector(".title").textContent =
+      tempCurrentRace.title || "Live Results";
+    addEntries(tempCurrentRace.entries);
+  })
+  .catch((err) => {
+    console.error(err);
+    alert("Failed to sync race");
+  });
 
 messageForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -61,6 +86,12 @@ socket.on("newMessage", (message) => {
   });
 });
 
+socket.on("race-selection", (currentRace) => {
+  tempCurrentRace = currentRace;
+  document.querySelector(".title").textContent = currentRace.title;
+  addEntries(tempCurrentRace.entries);
+});
+
 // client-side
 socket.on("connect", () => {
   console.log(socket.id);
@@ -96,4 +127,16 @@ function addResult(result) {
   let tr = document.createElement("tr");
   tr.innerHTML = `<td>${result.pos}</td><td>${result.athlete}</td><td>${result.school}</td><td>${result.year}</td><td>${result.time}</td>`;
   tbody.appendChild(tr);
+}
+
+function addEntries(entries) {
+  let tbody = document.querySelector("#results > tbody#entries");
+  tbody.innerHTML = "";
+  if (entries) {
+    for (let val of entries) {
+      let tr = document.createElement("tr");
+      tr.innerHTML = `<td>${val.name}</td><td>${val.school}</td><td>${val.year}</td>`;
+      tbody.appendChild(tr);
+    }
+  }
 }
