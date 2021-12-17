@@ -7,8 +7,6 @@ const { Server } = require("socket.io");
 const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
-const testRace = require("./races/test.json");
-const dayjs = require("dayjs");
 const { join } = require("path");
 
 // const dbUrl = config.db.url;
