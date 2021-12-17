@@ -30,7 +30,7 @@ app.use(morgan("dev"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "client/public")));
 
 const server = createServer(app);
 const io = new Server(server, {
@@ -96,7 +96,7 @@ app.get("/api/v1/load-race", (req, res, next) => {
 
 app.use("*", (req, res, next) => {
   try {
-    res.status(404).sendFile(path.join(__dirname, "/public/lost.html"));
+    res.sendFile(path.join(__dirname, "client/public/index.html"));
   } catch (error) {
     next(error);
   }
