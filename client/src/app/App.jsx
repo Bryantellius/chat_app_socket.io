@@ -20,27 +20,27 @@ const App = () => {
                     <MatxTheme>
                         <GlobalCss />
                         <BrowserRouter basename={process.env.PUBLIC_URL}>
-                        <Router history={history}>
-                            <AuthProvider>
-                                <MatxSuspense>
-                                    <Switch>
-                                        {/* AUTHENTICATION PAGES (SIGNIN, SIGNUP ETC.) */}
-                                        {sessionRoutes.map((item, i) => (
-                                            <Route
-                                                key={i}
-                                                path={item.path}
-                                                component={item.component}
-                                            />
-                                        ))}
-                                        {/* AUTH PROTECTED DASHBOARD PAGES */}
-                                        <AuthGuard>
-                                            <MatxLayout />{' '}
-                                            {/* RETURNS <Layout1/> component */}
-                                        </AuthGuard>
-                                    </Switch>
-                                </MatxSuspense>
-                            </AuthProvider>
-                        </Router>
+                            <Router history={history}>
+                                <AuthProvider>
+                                    <MatxSuspense>
+                                        <Switch>
+                                            {/* AUTHENTICATION PAGES (SIGNIN, SIGNUP ETC.) */}
+                                            {sessionRoutes.map((item, i) => (
+                                                <Route
+                                                    key={i}
+                                                    path={item.path}
+                                                    component={item.component}
+                                                />
+                                            ))}
+                                            {/* AUTH PROTECTED DASHBOARD PAGES */}
+                                            <AuthGuard>
+                                                <MatxLayout />{' '}
+                                                {/* RETURNS <Layout1/> component */}
+                                            </AuthGuard>
+                                        </Switch>
+                                    </MatxSuspense>
+                                </AuthProvider>
+                            </Router>
                         </BrowserRouter>
                     </MatxTheme>
                 </SettingsProvider>

@@ -24,14 +24,14 @@ const Brand = ({ children }) => {
             className={clsx('flex items-center justify-between', classes.brand)}
         >
             <div className="flex items-center">
-                <MatxLogo />
+                {/* <MatxLogo /> */}
                 <span
                     className={clsx({
                         'text-18 ml-2 font-medium sidenavHoverShow': true,
                         [classes.hideOnCompact]: mode === 'compact',
                     })}
                 >
-                    Matx
+                    Xpress
                 </span>
             </div>
             <div
