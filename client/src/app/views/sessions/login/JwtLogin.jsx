@@ -35,8 +35,8 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
 const JwtLogin = () => {
     const [loading, setLoading] = useState(false)
     const [userInfo, setUserInfo] = useState({
-        email: 'jason@ui-lib.com',
-        password: 'dummyPass',
+        email: 'bbryant@xpress.com',
+        password: 'anything4test',
     })
     const [message, setMessage] = useState('')
     const { login } = useAuth()
@@ -129,7 +129,7 @@ const JwtLogin = () => {
                                             checked={userInfo.agreement || true}
                                         />
                                     }
-                                    label="Remeber me"
+                                    label="Remember me"
                                 />
 
                                 {message && (
