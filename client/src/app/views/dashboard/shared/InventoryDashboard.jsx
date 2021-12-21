@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import StatCard5 from './StatCard5'
-import TopSellingTable from './TopSellingTable'
+import TopSellingTable from './ResultsTable'
 import InventoryLineChart from './InventoryLineChart'
 import { Card, Divider, Grid, MenuItem, Select } from '@material-ui/core'
 import InventoryDoughnutChart from './InventoryDoughnutChart'

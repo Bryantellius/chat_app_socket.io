@@ -2,17 +2,37 @@ import { authRoles } from './auth/authRoles'
 
 export const navigations = [
     {
-        name: 'Dashboard',
+        name: 'Index',
         path: '/dashboard',
-        icon: 'dashboard',
+        icon: 'view_list',
     },
     {
-        label: 'Pages',
+        label: 'Results',
         type: 'label',
     },
     {
-        name: 'Session/Auth',
-        icon: 'security',
+        name: 'Live',
+        icon: 'priority_high',
+        children: [],
+    },
+    {
+        name: 'Completed',
+        icon: 'done',
+        children: [],
+    },
+    {
+        name: 'Archives',
+        icon: 'folder',
+        children: [],
+    },
+    {
+        label: 'Admin',
+        type: 'label',
+    },
+    {
+        name: 'Components',
+        icon: 'favorite',
+        // badge: { value: '30+', color: 'secondary' },
         children: [
             {
                 name: 'Sign in',
@@ -34,18 +54,6 @@ export const navigations = [
                 iconText: '404',
                 path: '/session/404',
             },
-        ],
-    },
-    
-    {
-        label: 'Components',
-        type: 'label',
-    },
-    {
-        name: 'Components',
-        icon: 'favorite',
-        badge: { value: '30+', color: 'secondary' },
-        children: [
             {
                 name: 'Auto Complete',
                 path: '/material/autocomplete',
@@ -169,7 +177,7 @@ export const navigations = [
                 name: 'Echarts',
                 path: '/charts/echarts',
                 iconText: 'E',
-            }
+            },
         ],
     },
     {

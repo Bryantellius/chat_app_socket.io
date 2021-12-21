@@ -16,7 +16,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
-    productTable: {
+    resultTable: {
         '& small': {
             height: 15,
             width: 50,
@@ -33,53 +33,58 @@ const useStyles = makeStyles(({ palette, ...theme }) => ({
     },
 }))
 
-const TopSellingTable = () => {
+const ResultsTable = ({results}) => {
     const classes = useStyles()
 
     return (
         <Card elevation={3} className="pt-5 mb-6">
             <div className="flex justify-between items-center px-6 mb-3">
-                <span className="card-title">top selling products</span>
-                <Select size="small" defaultValue="this_month" disableUnderline>
+                <span className="card-title">Scoreboard</span>
+                {/* <Select size="small" defaultValue="this_month" disableUnderline>
                     <MenuItem value="this_month">This Month</MenuItem>
                     <MenuItem value="last_month">Last Month</MenuItem>
-                </Select>
+                </Select> */}
             </div>
             <div className="overflow-auto">
                 <Table
                     className={clsx(
                         'whitespace-pre min-w-400',
-                        classes.productTable
+                        classes.resultTable
                     )}
                 >
                     <TableHead>
                         <TableRow>
-                            <TableCell className="px-6" colSpan={4}>
+                            <TableCell className="px-6" colSpan={1}>
+                                Pl
+                            </TableCell>
+                            <TableCell className="px-0" colSpan={4}>
                                 Name
                             </TableCell>
                             <TableCell className="px-0" colSpan={2}>
-                                Revenue
+                                School
                             </TableCell>
                             <TableCell className="px-0" colSpan={2}>
-                                Stock Status
-                            </TableCell>
-                            <TableCell className="px-0" colSpan={1}>
-                                Action
+                                Time
                             </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {productList.map((product, index) => (
+                        {results.map((result, index) => (
                             <TableRow key={index} hover>
+                                <TableCell className="px-0" colSpan={1}>
+                                    {index + 1}
+                                    {/* <IconButton>
+                                        <Icon color="primary">edit</Icon>
+                                    </IconButton> */}
+                                </TableCell>
                                 <TableCell
                                     className="px-0 capitalize"
                                     colSpan={4}
                                     align="left"
                                 >
                                     <div className="flex items-center">
-                                        <Avatar src={product.imgUrl} />
                                         <p className="m-0 ml-8">
-                                            {product.name}
+                                            {result.name}
                                         </p>
                                     </div>
                                 </TableCell>
@@ -88,11 +93,13 @@ const TopSellingTable = () => {
                                     align="left"
                                     colSpan={2}
                                 >
-                                    $
-                                    {product.price > 999
-                                        ? (product.price / 1000).toFixed(1) +
-                                          'k'
-                                        : product.price}
+                                    {result.imgUrl ? (
+                                        <Avatar src={result.imgUrl} />
+                                    ) : (
+                                        <p className="m-0 ml-8">
+                                            {result.school}
+                                        </p>
+                                    )}
                                 </TableCell>
 
                                 <TableCell
@@ -100,10 +107,11 @@ const TopSellingTable = () => {
                                     align="left"
                                     colSpan={2}
                                 >
-                                    {product.available ? (
-                                        product.available < 20 ? (
+                                    <p className="m-0 ml-8">{result.time}</p>
+                                    {/* {result.available ? (
+                                        result.available < 20 ? (
                                             <small className="border-radius-4 bg-secondary text-white px-2 py-2px">
-                                                {product.available} available
+                                                {result.available} available
                                             </small>
                                         ) : (
                                             <small className="border-radius-4 bg-primary text-white px-2 py-2px">
@@ -114,12 +122,7 @@ const TopSellingTable = () => {
                                         <small className="border-radius-4 bg-error text-white px-2 py-2px">
                                             out of stock
                                         </small>
-                                    )}
-                                </TableCell>
-                                <TableCell className="px-0" colSpan={1}>
-                                    <IconButton>
-                                        <Icon color="primary">edit</Icon>
-                                    </IconButton>
+                                    )} */}
                                 </TableCell>
                             </TableRow>
                         ))}
@@ -130,37 +133,4 @@ const TopSellingTable = () => {
     )
 }
 
-const productList = [
-    {
-        imgUrl: '/assets/images/products/headphone-2.jpg',
-        name: 'earphone',
-        price: 100,
-        available: 15,
-    },
-    {
-        imgUrl: '/assets/images/products/headphone-3.jpg',
-        name: 'earphone',
-        price: 1500,
-        available: 30,
-    },
-    {
-        imgUrl: '/assets/images/products/iphone-2.jpg',
-        name: 'iPhone x',
-        price: 1900,
-        available: 35,
-    },
-    {
-        imgUrl: '/assets/images/products/iphone-1.jpg',
-        name: 'iPhone x',
-        price: 100,
-        available: 0,
-    },
-    {
-        imgUrl: '/assets/images/products/headphone-3.jpg',
-        name: 'Head phone',
-        price: 1190,
-        available: 5,
-    },
-]
-
-export default TopSellingTable
+export default ResultsTable

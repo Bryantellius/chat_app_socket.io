@@ -131,7 +131,7 @@ const Layout1Topbar = () => {
 
                         {/* <NotificationBar2 /> */}
 
-                        <ShoppingCart />
+                        {/* <ShoppingCart /> */}
 
                         <MatxMenu
                             menuButton={
