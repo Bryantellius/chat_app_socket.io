@@ -1,7 +1,7 @@
 const express = require("express");
 const config = require("./config");
 const path = require("path");
-// const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 const { createServer } = require("http");
 const { Server } = require("socket.io");
 const cors = require("cors");
@@ -9,14 +9,14 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const { join } = require("path");
 
-// const dbUrl = config.db.url;
+const dbUrl = config.db.url;
 
-// mongoose.connect(dbUrl, (err) => {
-//   if (err) console.error(err);
-//   else console.log("DB connected :)");
-// });
+mongoose.connect(dbUrl, (err) => {
+  if (err) console.error(err);
+  else console.log("DB connected :)");
+});
 
-// const Message = mongoose.model("Message", { name: String, message: String });
+const Message = mongoose.model("Message", { name: String, message: String });
 
 let tempCurrentRace = {};
 let tempResults = [];
