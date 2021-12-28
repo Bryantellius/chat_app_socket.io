@@ -94,6 +94,16 @@ app.get("/api/v1/load-race", (req, res, next) => {
   }
 });
 
+app.get("/api/v1/messages", (req, res, next) => {
+  try {
+    Message.find({"name": "Ben Bryant"}, (err, messages) => {
+      res.json(messages);
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
 app.use("*", (req, res, next) => {
   try {
     res.sendFile(path.join(__dirname, "client/public/index.html"));
